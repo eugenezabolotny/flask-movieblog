@@ -1,0 +1,71 @@
+{
+    "movies": [
+        {
+            "id": 1,
+            "title": "Guardians of the Galaxy",
+            "genre": "Action",
+            "year": "2012",
+            "duration": "02:01:00",
+            "description": "A group of intergalactic criminals are forced to work together to stop a fanatical warrior from taking control of the universe.",
+            "director": "James Gunn",
+            "writers": " James Gunn, Nicole Perlman",
+            "stars": "Chris Pratt, Vin Diesel, Bradley Cooper"
+        },
+        {
+            "id": 2,
+            "title": "Logan",
+            "genre": "Action",
+            "year": "2012",
+            "duration": "02:17:00",
+            "description": "In the near future, a weary Logan cares for an ailing Professor X somewhere on the Mexican border. However, Logan's attempts to hide from the world and his legacy are upended when a young mutant arrives, pursued by dark forces.",
+            "director": "James Mangold",
+            "writers": "James Mangold, Scott Frank",
+            "stars": "Hugh Jackman, Patrick Stewart, Dafne Keen"
+        },
+        {
+            "id": 3,
+            "title": "Daddy's Home",
+            "genre": "Comedy",
+            "year": "2012",
+            "duration": "01:36:00",
+            "description": "Brad Whitaker is a radio host trying to get his stepchildren to love him and call him Dad. But his plans turn upside down when their biological father, Dusty Mayron, returns.",
+            "director": "Sean Anders",
+            "writers": "Brian Burns, Sean Anders",
+            "stars": "Will Ferrell, Mark Wahlberg, Linda Cardellini"
+        },
+        {
+            "id": 4,
+            "title": "Fist Fight",
+            "genre": "Comedy",
+            "year": "2012",
+            "duration": "01:31:00",
+            "description": "When one school teacher unwittingly causes another teacher's dismissal, he is challenged to an after-school fight.",
+            "director": "Richie Keen",
+            "writers": "Van Robichaux, Evan Susser",
+            "stars": "Ice Cube, Charlie Day, Tracy Morgan"
+        },
+        {
+            "id": 5,
+            "title": "Ex Machina",
+            "genre": "Drama",
+            "year": "2012",
+            "duration": "01:48:00",
+            "description": "A young programmer is selected to participate in a ground-breaking experiment in synthetic intelligence by evaluating the human qualities of a breath-taking humanoid A.I.",
+            "director": "Alex Garland",
+            "writers": "Alex Garland",
+            "stars": "Alicia Vikander, Domhnall Gleeson, Oscar Isaac"
+        },
+        {
+            "id": 6,
+            "title": "Django Unchained",
+            "genre": "Drama",
+            "year": "2012",
+            "duration": "02:45:00",
+            "description": "With the help of a German bounty hunger, a freed slave sets out to rescue his wife from a brutal Mississippi plantation owner.",
+            "director": "Quentin Tarantino",
+            "writers": "Quentin Tarantino",
+            "stars": "Jamie Foxx, Christoph Waltz, Leonardo DiCaprio"
+        }
+    ],
+    "news": []
+}
