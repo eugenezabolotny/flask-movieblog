@@ -1,14 +1,9 @@
 from flask import Flask, request, jsonify
-import json
-
 from flask.views import MethodView
 
-app = Flask(__name__)
+from movieblog.db.data import movies
 
-with open('movieblog.json') as f:
-    movieblog_data: dict = json.load(f)
-    movies: list = movieblog_data['movies']
-    news: list = movieblog_data['news']
+app = Flask(__name__)
 
 
 class Movies(MethodView):

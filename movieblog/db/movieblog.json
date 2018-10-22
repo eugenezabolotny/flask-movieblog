@@ -5,7 +5,7 @@
             "title": "Guardians of the Galaxy",
             "genre": "Action",
             "year": "2012",
-            "duration": "02:01:00",
+            "duration": "2h 01m",
             "description": "A group of intergalactic criminals are forced to work together to stop a fanatical warrior from taking control of the universe.",
             "director": "James Gunn",
             "writers": " James Gunn, Nicole Perlman",
@@ -16,7 +16,7 @@
             "title": "Logan",
             "genre": "Action",
             "year": "2012",
-            "duration": "02:17:00",
+            "duration": "2h 17m",
             "description": "In the near future, a weary Logan cares for an ailing Professor X somewhere on the Mexican border. However, Logan's attempts to hide from the world and his legacy are upended when a young mutant arrives, pursued by dark forces.",
             "director": "James Mangold",
             "writers": "James Mangold, Scott Frank",
@@ -27,7 +27,7 @@
             "title": "Daddy's Home",
             "genre": "Comedy",
             "year": "2012",
-            "duration": "01:36:00",
+            "duration": "1h 36m",
             "description": "Brad Whitaker is a radio host trying to get his stepchildren to love him and call him Dad. But his plans turn upside down when their biological father, Dusty Mayron, returns.",
             "director": "Sean Anders",
             "writers": "Brian Burns, Sean Anders",
@@ -38,7 +38,7 @@
             "title": "Fist Fight",
             "genre": "Comedy",
             "year": "2012",
-            "duration": "01:31:00",
+            "duration": "1h 31m",
             "description": "When one school teacher unwittingly causes another teacher's dismissal, he is challenged to an after-school fight.",
             "director": "Richie Keen",
             "writers": "Van Robichaux, Evan Susser",
@@ -49,7 +49,7 @@
             "title": "Ex Machina",
             "genre": "Drama",
             "year": "2012",
-            "duration": "01:48:00",
+            "duration": "1h 48m",
             "description": "A young programmer is selected to participate in a ground-breaking experiment in synthetic intelligence by evaluating the human qualities of a breath-taking humanoid A.I.",
             "director": "Alex Garland",
             "writers": "Alex Garland",
@@ -60,12 +60,43 @@
             "title": "Django Unchained",
             "genre": "Drama",
             "year": "2012",
-            "duration": "02:45:00",
+            "duration": "2h 45m",
             "description": "With the help of a German bounty hunger, a freed slave sets out to rescue his wife from a brutal Mississippi plantation owner.",
             "director": "Quentin Tarantino",
             "writers": "Quentin Tarantino",
             "stars": "Jamie Foxx, Christoph Waltz, Leonardo DiCaprio"
         }
     ],
-    "news": []
+    "news": [
+        {
+            "title": "Warner Bros' Six Billion Dollar Man Release Date Removed From Schedule",
+            "description": "Warner Bros' removes Mark Wahlberg's The Six Billion Dollar Man, the long-gestating and apparently stalled remake, from their 2020 release schedule.",
+            "url": "https://screenrant.com/six-billion-dollar-man-remake-release-date/"
+        },
+        {
+            "title": "Wonder Woman 1984 Release Pushed From November 2019 To June 2020",
+            "description": "Warner Bros' highly anticipated DC sequel Wonder Woman 1984 is moving to a summer 2020 release date after previously securing a late 2019 slot.",
+            "url": "https://screenrant.com/wonder-woman-2-release-date-2020/"
+        },
+        {
+            "title": "Joker Movie Actor Shea Whigham Reveals Who He Plays",
+            "description": "Shea Whigham reveals some details for his character from Joker, calling the Joaquin Phoenix-headlined DC comic book movie an 'experience'.",
+            "url": "https://screenrant.com/joker-movie-shea-whigham-character/"
+        },
+        {
+            "title": "Ryan Meinerding & Andy Park Interview: Designing Spider-Man's Suit",
+            "description": "We interview Marvel Studios' Ryan Meinerding and Andy Park about the work the do designing elements for Marvel's movies, including Spider-Man's suit.",
+            "url": "https://screenrant.com/marvel-studios-andy-park-ryan-meinerding-interview/"
+        },
+        {
+            "title": "Chris Hemsworth Picked Up A Hitchhiker & Gave Him A Helicopter Lift",
+            "description": "Thor actor Chris Hemsworth documents picking up a hitchhiking musician and ending up giving him a lift to his destination via helicopter.",
+            "url": "https://screenrant.com/chris-hemsworth-hitchhiker-helicopter/"
+        },
+        {
+            "title": "What Iron Man's New Avengers 4 Armor Could Look Like",
+            "description": "New fan art imagines what the new Iron Man suit in Avengers 4 could look like by combining all supposed leaked details about the armor.",
+            "url": "https://screenrant.com/avengers-4-iron-man-new-armor-fan-art/"
+        }
+    ]
 }
