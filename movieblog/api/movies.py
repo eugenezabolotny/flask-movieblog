@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask.views import MethodView
 
-from movieblog.db.data import movies
+from movieblog.db import movies
 
 app = Flask(__name__)
 

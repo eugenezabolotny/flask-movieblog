@@ -2,38 +2,25 @@
 
 {% block title %}Movies{% endblock %}
 {% block body %}
-    <div class="container">
-        <h1 class="display-2 text-center my-5">Movies</h1>
-        <div class="row">
-            {% for movie in movies %}
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="{{ url_for('static', filename='img/movie-placeholder.gif') }}" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title font-weight-bold mb-0">{{ movie.title }}</h5>
-                            <p class="small">
-                                <span>{{ movie.genre }}. </span>
-                                <span>{{ movie.year }}. </span>
-                            </p>
-                            <p class="card-text">{{ movie.description }}</p>
-                            <p class="card-text">
-                                <span class="d-block">
-                                    <span class="font-weight-bold">Director:</span> {{ movie.director }}
-                                </span>
-                                <span class="d-block">
-                                    <span class="font-weight-bold">Writers:</span> {{ movie.writers }}
-                                </span>
-                                <span class="d-block">
-                                    <span class="font-weight-bold">Stars:</span> {{ movie.stars }}
-                                </span>
-                            </p>
-                            <p class="card-text">{{ movie.duration }}</p>
-                            <p class="card-text"></p>
-                            <a href="{{ url_for('movieblog_views.movie_view', movie_id=movie.id) }}" class="btn btn-primary">Go Detailed</a>
-                        </div>
+    <h1 class="display-2 text-center my-5">Movies</h1>
+    <div class="row">
+        {% for movie in movies %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card">
+                    <img class="card-img-top" src="{{ url_for('static', filename='img/movie-placeholder.gif') }}"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold mb-0">{{ movie.title }}</h5>
+                        <p class="small">
+                            <span>{{ movie.genre }}. </span>
+                            <span>{{ movie.year }}. </span>
+                        </p>
+                        <p class="card-text">{{ movie.description }}</p>
+                        <a href="{{ url_for('movieblog_views.movie_view', movie_id=movie.id) }}"
+                           class="btn btn-primary">Go Detailed</a>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
