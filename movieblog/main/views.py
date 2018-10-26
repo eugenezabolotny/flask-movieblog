@@ -1,12 +1,26 @@
 from flask import render_template
-from flask import Flask, session, redirect, url_for, request, flash
+from flask import session, redirect, url_for, request, flash
 from flask.views import View, MethodView
+from functools import wraps
 
 from movieblog.db import movies
 from movieblog.db import news
 from movieblog.db import users
 from .forms import RegisterForm
 from .models import User
+
+
+def requires_auth(f):
+    @wraps(f)
+    def wrapped(*args, **kwargs):
+        if not session.get('logged_in'):
+            form = RegisterForm(request.form)
+            flash('Authorization required', 'danger')
+            flash(f"dev: {users if users else 'no registered users'}", 'warning')
+            return render_template('login.html', form=form)
+        return f(*args, **kwargs)
+
+    return wrapped
 
 
 class HomeView(View):
@@ -19,12 +33,14 @@ class HomeView(View):
 class MoviesView(View):
     methods = ['GET']
 
+    @requires_auth
     def dispatch_request(self):
         return render_template('movies.html', movies=movies)
 
 
 class MovieView(MethodView):
 
+    @requires_auth
     def get(self, movie_id):
         try:
             movie: dict = movies[movie_id]
@@ -39,6 +55,7 @@ class RegisterView(MethodView):
 
     def get(self):
         form = RegisterForm(request.form)
+        flash(f"dev: {users if users else 'no registered users'}", 'warning')
         return render_template('register.html', form=form)
 
     def post(self):
@@ -47,4 +64,40 @@ class RegisterView(MethodView):
         users[form.email.data] = user
 
         flash('You are now registered and can log in', 'success')
+        return redirect(url_for('movieblog_views.login_view', form=form))
+
+
+class LoginView(MethodView):
+
+    def get(self):
+        form = RegisterForm(request.form)
+        flash(f"dev: {users if users else 'no registered users'}", 'warning')
+        return render_template('login.html', form=form)
+
+    def post(self):
+        form = RegisterForm(request.form)
+        email = request.form['email']
+        password = request.form['password']
+
+        if email in users.keys():
+            if users[email].check_password(password):
+                session.permanent = True
+                session['logged_in'] = True
+                session['user'] = vars(users[email])['name']
+                flash('You are now logged in', 'success')
+                return redirect(url_for('movieblog_views.home_view', news=news))
+            else:
+                flash(f'Wrong password for user {email}', 'danger')
+                flash(f"dev: {users if users else 'no registered users'}", 'warning')
+                return render_template('login.html', form=form)
+
+        flash(f'Username {email} not found', 'danger')
+        flash(f"dev: {users if users else 'no registered users'}", 'warning')
+        return render_template('login.html', form=form)
+
+
+class LogoutView(MethodView):
+    def get(self):
+        session.clear()
+        flash(f'You are now logged out', 'success')
         return redirect(url_for('movieblog_views.home_view', news=news))

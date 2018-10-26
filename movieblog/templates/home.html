@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
+{% set active_page = "home" %}
 
 {% block body %}
+    {% include 'modules/_message.html' %}
     <h1 class="display-2 text-center my-5">Welcome to MovieBlog</h1>
     <div class="d-flex">
         <a class="btn btn-primary btn-lg btn-block w-50 mx-auto mb-5"
