@@ -1,7 +1,7 @@
-from flask import render_template
-from flask import session, redirect, url_for, request, flash
-from flask.views import View, MethodView
 from functools import wraps
+
+from flask import render_template, session, redirect, url_for, request, flash, current_app
+from flask.views import View, MethodView
 
 from movieblog.db import movies
 from movieblog.db import news
@@ -16,8 +16,7 @@ def requires_auth(f):
         if not session.get('logged_in'):
             form = RegisterForm(request.form)
             flash('Authorization required', 'danger')
-            flash(f"dev: {users if users else 'no registered users'}", 'warning')
-            return render_template('login.html', form=form)
+            return redirect(url_for('movieblog_views.login_view', form=form))
         return f(*args, **kwargs)
 
     return wrapped
@@ -31,7 +30,7 @@ class HomeView(View):
 
 
 class MoviesView(View):
-    methods = ['GET']
+    methods = ['GET', 'POST']
 
     @requires_auth
     def dispatch_request(self):
@@ -51,11 +50,16 @@ class MovieView(MethodView):
         return render_template('movie.html', movie=response)
 
 
+def is_dev_mode():
+    return current_app.config['MODE'] == 'DevConfig'
+
+
 class RegisterView(MethodView):
 
     def get(self):
         form = RegisterForm(request.form)
-        flash(f"dev: {users if users else 'no registered users'}", 'warning')
+        if is_dev_mode():
+            flash(f"dev: {users if users else 'no registered users'}", 'warning')
         return render_template('register.html', form=form)
 
     def post(self):
@@ -71,7 +75,8 @@ class LoginView(MethodView):
 
     def get(self):
         form = RegisterForm(request.form)
-        flash(f"dev: {users if users else 'no registered users'}", 'warning')
+        if is_dev_mode():
+            flash(f"dev: {users if users else 'no registered users'}", 'warning')
         return render_template('login.html', form=form)
 
     def post(self):
@@ -88,11 +93,13 @@ class LoginView(MethodView):
                 return redirect(url_for('movieblog_views.home_view', news=news))
             else:
                 flash(f'Wrong password for user {email}', 'danger')
+                if is_dev_mode():
+                    flash(f"dev: {users if users else 'no registered users'}", 'warning')
+        else:
+            flash(f'Username {email} not found', 'danger')
+            if is_dev_mode():
                 flash(f"dev: {users if users else 'no registered users'}", 'warning')
-                return render_template('login.html', form=form)
 
-        flash(f'Username {email} not found', 'danger')
-        flash(f"dev: {users if users else 'no registered users'}", 'warning')
         return render_template('login.html', form=form)
 
 

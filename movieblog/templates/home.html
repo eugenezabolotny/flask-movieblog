@@ -3,14 +3,14 @@
 
 {% block body %}
     {% include 'modules/_message.html' %}
-    <h1 class="display-2 text-center my-5">Welcome to MovieBlog</h1>
+    <h1 class="display-3 text-center my-5">Welcome to MovieBlog</h1>
     <div class="d-flex">
         <a class="btn btn-primary btn-lg btn-block w-50 mx-auto mb-5"
            href="{{ url_for('movieblog_views.movies_view') }}">Go to movies</a>
     </div>
     {% for news_item in news %}
         <div class="jumbotron">
-            <h3 class="h1">{{ news_item.title }}</h3>
+            <h3 class="h2">{{ news_item.title }}</h3>
             <hr class="my-4">
             <p>{{ news_item.description }}</p>
             <a class="btn btn-outline-primary btn-lg" href="{{ news_item.url }}" role="button">Read more</a>

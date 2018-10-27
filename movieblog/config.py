@@ -2,15 +2,18 @@ import os
 
 
 class Config:
-    TEST_VARIABLE = 'Config'
+    MODE = 'Config'
+    DEBUG = False
 
 
 class DevConfig(Config):
-    TEST_VARIABLE = 'DevConfig'
+    MODE = 'DevConfig'
+    DEBUG = True
 
 
 class TestConfig(Config):
-    TEST_VARIABLE = 'TestConfig'
+    MODE = 'TestConfig'
+    DEBUG = False
 
 
 def run_config():
