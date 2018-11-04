@@ -1,63 +1,77 @@
-from flask import Flask, request, jsonify
+from flask import request
 from flask.views import MethodView
 
-from movieblog.db import movies
+from movieblog.db import db
 
-app = Flask(__name__)
+from movieblog.main.schemas import movie_schema, movies_schema
+from movieblog.main.models import MovieTable
 
 
 class Movies(MethodView):
 
-    def get(self):
-        response: dict = movies
-        return jsonify(response)
+    @staticmethod
+    def get(movie_id=None):
 
-    def post(self):
-        data: dict = request.get_json()
-        movie_keys = ['title', 'genre', 'year', 'duration', 'description', 'director', 'writers', 'stars']
-        new_movie = {key: value for (key, value) in data.items() if key in movie_keys}
+        if movie_id:
+            movie: MovieTable = MovieTable.query.get(movie_id)
 
-        if not new_movie.get('title') in [movie['title'] for movie in movies]:
-            new_movie['id'] = movies[-1]['id'] + 1 if movies else 1
-            movies.append(new_movie)
-            response = {'result': new_movie}
-        else:
-            response = {'result': False}
+            if movie:
+                return movie_schema.jsonify(movie)
+            else:
+                return 'no movie with such id'
 
-        return jsonify(response)
+        elif not movie_id:
+            movies: list = MovieTable.query.order_by(MovieTable.id).all()
+            return movies_schema.jsonify(movies)
 
+    @staticmethod
+    def post(movie_id=None):
 
-class Movie(MethodView):
+        if movie_id:
+            return 'method not allowed'
 
-    def get(self, movie_id):
-        try:
-            movie: dict = movies[movie_id]
-        except IndexError:
-            response = {'result': False}
-        else:
-            response = movie
-        return jsonify(response)
-
-    def put(self, movie_id):
-        try:
-            movie: dict = movies[movie_id]
-        except IndexError:
-            response = {'result': False}
-        else:
+        elif not movie_id:
             data: dict = request.get_json()
-            for key in data.keys():
-                if key in movie.keys():
-                    movie[key] = data[key]
-            response = movie
+            movie_keys = ['title', 'genre', 'year', 'duration', 'description', 'director', 'writers', 'stars']
+            new_movie = {key: value for (key, value) in data.items() if key in movie_keys}
 
-        return jsonify(response)
+            if not MovieTable.query.filter_by(title=new_movie.get('title')).first():
+                movie = MovieTable(**new_movie)
+                db.session.add(movie)
+                db.session.commit()
+                return movie_schema.jsonify(new_movie)
+            else:
+                return 'movie with this title already exists'
 
-    def delete(self, movie_id):
-        response = {'result': False}
+    @staticmethod
+    def put(movie_id=None):
 
-        for movie in movies:
-            if movie_id == movie['id']:
-                movies.remove(movie)
-                response = {'result': True}
+        if movie_id:
+            data: dict = request.get_json()
+            movie: MovieTable = MovieTable.query.get(movie_id)
 
-        return jsonify(response)
+            if movie:
+                for key in data.keys():
+                    setattr(movie, key, data[key])
+                db.session.commit()
+                return movie_schema.jsonify(movie)
+            else:
+                return 'no movie with such id'
+
+        elif not movie_id:
+            return 'method not allowed'
+
+    @staticmethod
+    def delete(movie_id=None):
+
+        if movie_id:
+            movie: MovieTable = MovieTable.query.get(movie_id)
+            if movie:
+                db.session.delete(movie)
+                db.session.commit()
+                return 'movie deleted'
+            else:
+                return 'no movie with such id'
+
+        elif not movie_id:
+            return 'method not allowed'

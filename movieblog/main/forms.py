@@ -1,7 +1,7 @@
 from wtforms import Form, StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError, Length, NumberRange
 
-from movieblog.main.models import User
+from movieblog.main.models import UserTable
 
 
 class RegisterForm(Form):
@@ -14,11 +14,11 @@ class RegisterForm(Form):
     submit = SubmitField('Register')
 
     def validate_username(self, username):
-        user = User.query.filter_by(username=username.data).first()
+        user = UserTable.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError('Please use a different username.')
 
     def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
+        user = UserTable.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
